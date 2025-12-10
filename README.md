@@ -42,7 +42,9 @@ The ProductRecommender uses a hierarchical set of rules to categorize customers 
 **✔\*\*** Existing account type\*\*
 
 - Balance Tiers (Financial Capacity): The customer's current account balance is grouped into defined tiers, which often serve as the _primary filter_ for premium or high-value products. ** \*\***Logic:\*\* Products are gated based on minimum balance requirements (e.g., a "Gold Account" might require a balance >$50,000).
-- Occupation Overrides: Certain occupations have pre-defined rules that **override** general balance- or age-based recommendations. This accounts for predictable income streams or regulatory restrictions. ** \*\***Logic:\*\* If the customer's occupation matches a specific value (e.g., "Student," "Self-Employed"), a specific product set is immediately recommended or excluded.
+- Occupation Overrides: Certain occupations have pre-defined rules that **override** general balance- or age-based recommendations. This accounts for predictable income streams or regulatory restrictions.
+  
+  Logic: If the customer's occupation matches a specific value (e.g., "Student," "Self-Employed"), a specific              product set is immediately recommended or excluded.
 - Age Category: The customer's age is used to categorize them by life stage, enabling recommendations for products targeted at certain demographics (e.g student , retirement accounts)
 - Existing Account Type: The type of account(s) a customer already holds is used to infer their current financial needs and their affinity for related products.** \*\***Logic:\*\* If account_type is "Basic Checking," recommend an upgrade to "Premium Checking" based on their balance and usage.
 
