@@ -84,10 +84,10 @@ This section describes the banker_recommendation_tool, a Python function designe
 
 
 def banker_recommendation_tool(name: str):
-
-  customers = get_customers()
+   	
+	customers = get_customers()
   
-  recommender = ProductRecommender()
+  	recommender = ProductRecommender()
 
     for c in customers:
 	
