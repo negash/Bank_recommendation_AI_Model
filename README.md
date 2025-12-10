@@ -89,6 +89,7 @@ recommender = ProductRecommender()
 
     return {"error": f"No customer found with name {name}"}
 
+
 **5. Tools Definition**
 This section describes the standardized schema used to define and expose the banker_recommendation_tool to a Large Language Model (LLM) utilizing systems like OpenAI's function-calling feature. This schema array (TOOLS) serves as the official manifest that informs the LLM about the external functions it can call. It ensures the LLM understands the **name** , **purpose** , and required **inputs** for the tool, allowing it to correctly generate the necessary JSON arguments for execution.
 
@@ -110,6 +111,8 @@ TOOLS = [
     }
     }
 ]
+
+
 **6. LLM Pipeline (Model → Tool → Model)**
 This section describes the three-stage process used by the application to handle a user request that requires the use of an external tool—specifically, the banker_recommendation_tool. This pattern is known as the **Model → Tool → Model** pipeline. The primary goal of this pipeline is to leverage the LLM's natural language understanding to correctly identify the need for a function call, execute that function, and then use the function's output to generate a final, accurate, and contextually rich response for the user.
 
