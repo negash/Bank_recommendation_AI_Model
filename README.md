@@ -195,43 +195,6 @@ TOOL RESPONSE: {'name': 'Maria Lopez', 'occupation': 'Doctor', 'balance': 850000
 
 This document describes the bonus functionality for exporting customer product recommendations to a CSV file. The **Export to CSV** feature provides a mechanism to generate a comprehensive spreadsheet containing customer details and their corresponding product recommendations. This is useful for auditing, analysis, or sharing the recommendations outside of the application.
 
-Name,Occupation,Balance,Recommendation
-
-Maria Lopez,Engineer,185000,"Platinum Saving Member; Retirement Growth Plan (RGP)"
-
-John Smith,Teacher,90000,"Teacher Special Mortgage Savings Account; Education Grant-Linked Savings Plan"
-
-...
-
-CSV generation example:
-
-def generate_csv():
-customers = get_customers()
-recommender = ProductRecommender()
-rows = []
-
-    for c in customers:
-        customer_obj = Customer(
-        name=c["name"],
-        age=c.get("age"),
-        address=c.get("address"),
-        occupation=c.get("occupation"),
-        balance=c.get("balance"),
-        account_type=c.get("account_type")
-    )
-
-    rows.append([
-        c["name"],
-        c["occupation"],
-        c["balance"],
-    recommender.recommend(customer_obj)
-    ])
-
-    with open("customer_recommendations.csv", "w", newline="") as f:
-    writer = csv.writer(f)
-    writer.writerow(["Name", "Occupation", "Balance", "Recommendation"])
-    writer.writerows(rows)![alt text](customer_recommend_csv.png)
-
 **8. Example Full Run**
 
 **User:**
