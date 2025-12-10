@@ -178,9 +178,18 @@ msg = response.choices[0].message
 **Execute the tool if needed to validate**
 
 if msg.tool_calls:
-tool_call = msg.tool_calls[0]
-args = json.loads(tool_call.function.arguments)
-tool_response = banker_recommendation_tool(\*\*args)
+
+	tool_call = msg.tool_calls[0]
+	
+	args = json.loads(tool_call.function.arguments)
+	
+	tool_response = banker_recommendation_tool(\*\*args)
+	
+	print("TOOL RESPONSE:", tool_response)
+
+** response:
+
+TOOL RESPONSE: {'name': 'Maria Lopez', 'occupation': 'Doctor', 'balance': 850000, 'recommendation': 'Diamond Wealth Member; High-Yield Certificate of Deposit (HCD); Wealth Management Portfolio; Medical Professionals Retirement Advantage Plan; Retirement Growth Plan (RGP); Overdraft Protection Plan; Cash-Back Debit Rewards'}
 
 **7. Export Customer Recommendation to CSV (Bonous Feature)** \*\*\*\*
 
