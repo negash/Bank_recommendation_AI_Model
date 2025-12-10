@@ -22,13 +22,20 @@ This project demonstrates how a Large Language Model (LLM) can intelligently cal
 The Customer class is designed to encapsulate the **essential personal and financial information** of an individual customer, typically for use in a banking or financial application.
 
 class Customer:
-def **init**(self, name, age, address, occupation, balance, account_type):
-self.name = name
-elf.age = age
-self.address = address
-self.occupation = occupation.lower().strip() if occupation else ""
-self.balance = balance
-self.account_type = account_type.lower().strip() if account_type else ""
+
+	def **init**(self, name, age, address, occupation, balance, account_type):
+ 		
+		self.name = name
+		
+		self.age = age
+		
+		self.address = address
+		
+		self.occupation = occupation.lower().strip() if occupation else ""
+		
+		self.balance = balance
+		
+		self.account_type = account_type.lower().strip() if account_type else ""
 
 **2. Product Recommendation Model**
 The ProductRecommender uses a hierarchical set of rules to categorize customers and match them with relevant financial products (e.g., specific savings accounts or checking account). The recommendation is determined by four primary factors, applied in a specific order of precedence.
