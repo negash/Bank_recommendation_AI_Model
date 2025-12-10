@@ -34,8 +34,11 @@ self.account_type = account_type.lower().strip() if account_type else ""
 The ProductRecommender uses a hierarchical set of rules to categorize customers and match them with relevant financial products (e.g., specific savings accounts or checking account). The recommendation is determined by four primary factors, applied in a specific order of precedence.
 
 **✔\*\*** Balance tiers\*\*
+
 **✔\*\*** Occupation overrides\*\*
+
 **✔\*\*** Age category\*\*
+
 **✔\*\*** Existing account type\*\*
 
 - Balance Tiers (Financial Capacity): The customer's current account balance is grouped into defined tiers, which often serve as the _primary filter_ for premium or high-value products. ** \*\***Logic:\*\* Products are gated based on minimum balance requirements (e.g., a "Gold Account" might require a balance >$50,000).
@@ -50,12 +53,18 @@ Example output:
 This section describes the structure and format of the Customer Data Source, typically used for system initialization, analysis, or as \*\* **input for applications like the ProductRecommender. This data source serves as a standardized collection of customer records, providing essential personal and financial information in a machine-readable format (JSON). a **JSON array** where each element in the array is a single **JSON object\*\* representing one customer record.
 
 [
+
 {
 "name": "Maria Lopez",
+
 "age": 33,
+
 "occupation": "Engineer",
+
 "balance": 185000,
+
 "address": "5324 W Main Street",
+
 "account_type": "checking"
 },
 ...
@@ -64,29 +73,37 @@ This section describes the structure and format of the Customer Data Source, typ
 **4. Tool: banker_recommendation_tool**
 This section describes the banker_recommendation_tool, a Python function designed to be exposed to a Large Language Model (LLM) via OpenAI's function-calling mechanism. Its purpose is to retrieve a customer's information and generate a tailored product recommendation. The tool accepts a customer's name as input, searches the customer database, and uses the ProductRecommender logic to return a specific product recommendation along with key customer details.
 
+
 def banker_recommendation_tool(name: str):
-customers = get_customers()
-recommender = ProductRecommender()
+
+  customers = get_customers()
+  
+  recommender = ProductRecommender()
 
     for c in customers:
-
-    if c["name"].lower() == name.lower():
-        customer_obj = Customer(
-        name=c["name"],
-        age=c.get("age"),
-        address=c.get("address"),
-        occupation=c.get("occupation"),
-        balance=c.get("balance"),
-        account_type=c.get("account_type")
+	
+    	if c["name"].lower() == name.lower():
+		
+          customer_obj = Customer(
+		  
+          name=c["name"],
+		  
+          age=c.get("age"),
+		  
+          address=c.get("address"),
+		  
+          occupation=c.get("occupation"),
+		  
+          balance=c.get("balance"),
+		  
+          account_type=c.get("account_type")
     )
-
     return {
         "name": c["name"],
         "occupation": c["occupation"],
         "balance": c["balance"],
         "recommendation": recommender.recommend(customer_obj)
     }
-
     return {"error": f"No customer found with name {name}"}
 
 
@@ -96,19 +113,28 @@ This section describes the standardized schema used to define and expose the ban
 The LLM uses this schema to call the tool:
 
 TOOLS = [
+
 {
-"type": "function",
-"function": {
-"name": "banker_recommendation_tool",
-"description": "Return the banking recommendation for a given customer name.",
-"parameters": {
-"type": "object",
-"properties": {
-"name": {"type": "string"}
-},
-    "required": ["name"]
-    }
-    }
+
+	"type": "function",
+
+	"function": {
+
+		"name": "banker_recommendation_tool",
+
+		"description": "Return the banking recommendation for a given customer name.",
+
+		"parameters": {
+
+			"type": "object",
+
+			"properties": {
+
+				"name": {"type": "string"}
+			},
+    		"required": ["name"]
+    	}
+      }
     }
 ]
 
@@ -119,15 +145,25 @@ This section describes the three-stage process used by the application to handle
 **Input message**
 
 messages = [
-{"role": "user", "content": "Generate a banking recommendation for Maria Lopez."}
-]
 
-**Call the model**
+  {
+
+     "role": "user", 
+
+     "content": "Generate a banking recommendation for Maria Lopez."
+ 
+   }
+ ]
+
 response = client.chat.completions.create(
-model="openai:gpt-5.1",
-messages=messages,
-tools=TOOLS
+
+  model="openai:gpt-5.1",
+  
+  messages=messages,
+  
+  tools=TOOLS
 )
+
 msg = response.choices[0].message
 
 **Execute the tool if needed to validate**
