@@ -1,4 +1,4 @@
-**Project** **REDME**
+**Banker Recommendation System**
 
 **Banker Recommendation System (LLM + Function Calling)**
 An end-to-end AI-powered banking recommendation engine built using **Python** , **OpenAI function calling** , and a rule-based financial product model.
