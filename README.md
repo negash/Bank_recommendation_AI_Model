@@ -200,18 +200,25 @@ This document describes the bonus functionality for exporting customer product r
 **User:**
 
 Generate a banking recommendation for Maria Lopez.
+
 Model Calls Tool:
 
 {
 "tool": "banker_recommendation_tool",
+
 "arguments": { "name": "Maria Lopez" }
+
 }
 
 Tool Response:
 
 {
 "name": "Maria Lopez",
+
 "occupation": "engineer",
+
 "balance": 185000,
-"recommendation": "VIP Member; Certificate of Deposit (Silver CD); Tech Professional Investment Plan; Retirement Growth Plan (RGP); Overdraft Protection Plan"
+
+"recommendation": "VIP Member; Certificate of Deposit (Silver CD); Tech Professional Investment Plan; Retirement Growth Plan (RGP); Overdraft 
+Protection Plan"
 }
