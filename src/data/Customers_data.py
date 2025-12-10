@@ -2,6 +2,7 @@
 # This file contains random customer data for testing purposes.
 # Each customer is represented as a dictionary with relevant attributes.
 # --- IGNORE ---
+
 def get_customers():
     return [
         {
