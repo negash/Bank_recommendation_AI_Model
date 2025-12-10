@@ -105,13 +105,11 @@ TOOLS = [
 "properties": {
 "name": {"type": "string"}
 },
-
     "required": ["name"]
     }
     }
     }
 ]
-
 **6. LLM Pipeline (Model → Tool → Model)**
 This section describes the three-stage process used by the application to handle a user request that requires the use of an external tool—specifically, the banker_recommendation_tool. This pattern is known as the **Model → Tool → Model** pipeline. The primary goal of this pipeline is to leverage the LLM's natural language understanding to correctly identify the need for a function call, execute that function, and then use the function's output to generate a final, accurate, and contextually rich response for the user.
 
