@@ -23,7 +23,7 @@ The Customer class is designed to encapsulate the **essential personal and finan
 
 class Customer:
 
-	def **init**(self, name, age, address, occupation, balance, account_type):
+	def _init_(self, name, age, address, occupation, balance, account_type):
  		
 		self.name = name
 		
