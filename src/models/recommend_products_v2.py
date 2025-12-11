@@ -19,7 +19,6 @@ class ProductRecommender:
     OCCUPATION_MAP = {
         "techer": "teacher",
         "samll buisness": "small business",
-        "small buisness": "small business",
         "buisness": "business",
         "cheking": "checking",
         "saving": "saving",
