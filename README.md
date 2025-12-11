@@ -193,9 +193,7 @@ This document describes the bonus functionality for exporting customer product r
 
 **8. Example Full Run**
 
-**User:**
-
-Generate a banking recommendation for Maria Lopez.
+**User:** Generate a banking recommendation for Maria Lopez.
 
 Model Calls Tool:
 
