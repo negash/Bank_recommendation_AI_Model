@@ -187,10 +187,6 @@ if msg.tool_calls:
 	
 	print("TOOL RESPONSE:", tool_response)
 
-** response:
-
-TOOL RESPONSE: {'name': 'Maria Lopez', 'occupation': 'Doctor', 'balance': 850000, 'recommendation': 'Diamond Wealth Member; High-Yield Certificate of Deposit (HCD); Wealth Management Portfolio; Medical Professionals Retirement Advantage Plan; Retirement Growth Plan (RGP); Overdraft Protection Plan; Cash-Back Debit Rewards'}
-
 **7. Export Customer Recommendation to CSV (Bonous Feature)** \*\*\*\*
 
 This document describes the bonus functionality for exporting customer product recommendations to a CSV file. The **Export to CSV** feature provides a mechanism to generate a comprehensive spreadsheet containing customer details and their corresponding product recommendations. This is useful for auditing, analysis, or sharing the recommendations outside of the application.
