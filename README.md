@@ -61,6 +61,7 @@ VIP Member; Silver CD; Investment Plan; Retirement Growth Plan; Overdraft Protec
 A Python function exposed to the LLM via OpenAI’s function calling interface:
 
 def banker_recommendation_tool(name: str):
+ 
     customers = get_customers()
     recommender = ProductRecommender()
 
@@ -101,15 +102,14 @@ The system follows a **Model → Tool → Model** workflow:
 The repository also includes a utility that exports the customer recommendations into a CSV file, useful for reporting, auditing, and downstream analysis.
 
 **Example Usage**
-Example invocation:
 
-# User request:
+**User request:**
 "Generate a banking recommendation for Maria Lopez"
 
-# LLM triggers:
+**LLM triggers:**
 banker_recommendation_tool(name="Maria Lopez")
 
-# Sample response:
+**Sample response:**
 
 {
   "name": "Maria Lopez",
