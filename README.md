@@ -44,16 +44,21 @@ This standardized model enables consistent input handling and recommendation log
 The Product Recommender uses a set of hierarchical rules to match customers with the right financial products
 Logic is based on:
 
-1. Balance Tiers — Groups customers by account balance.
-2. Occupation Overrides — Occupation-specific rules that adjust product eligibility.
-3.Age Categories — Life-stage based product targeting.
+**1. Balance Tiers** — Groups customers by account balance.
+   
+**2. Occupation Overrides** — Occupation-specific rules that adjust product eligibility.
+
+**3. Age Categories** — Life-stage based product targeting.
+
+**4. Account Type** — Existing account influences upgrade or complementary product offers.
 
 Example output might include recommendations like:
 
-Example output:
 VIP Member; Silver CD; Investment Plan; Retirement Growth Plan; Overdraft Protection
 
 **Function:** banker_recommendation_tool
+
+A Python function exposed to the LLM via OpenAI’s function calling interface:
 
 def banker_recommendation_tool(name: str):
     customers = get_customers()
