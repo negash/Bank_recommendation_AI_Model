@@ -1,0 +1,26 @@
+# For Data processing
+pandas==2.0.3   
+numpy==1.26.4
+# For OpenAI API interaction
+openai==0.27.8
+# For environment variable management
+python-dotenv==1.0.0
+# For AI suite functionalities
+aisuite==0.1.5  
+# For Jupyter Notebook support
+notebook==6.5.4 
+# For CSV handling
+csv==1.0.0
+# For JSON handling
+jsonlib-python3==1.6.1
+# For HTTP requests
+requests==2.31.0        
+# For data validation
+pydantic==2.8.0 
+# For testing
+pytest==7.4.0
+pytest-cov==4.1.0
+
+
+#to install all the dependencies listed in this file, run the following command:
+# pip install -r requirements.txt

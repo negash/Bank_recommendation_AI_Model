@@ -5,6 +5,24 @@ An end-to-end AI-powered banking recommendation engine built using **Python** , 
 
 This project demonstrates how a Large Language Model (LLM) can intelligently call backend tools to produce personalized product recommendations for bank customers.
 
+**Installation**
+
+To install all required dependencies for this project, run the following command:
+
+pip install -r requirements.txt
+
+**Optional :**
+
+Create and activate a virtual environment to isolate project dependencies:
+
+**#Create a virtual environment**
+
+python -m venv .venv
+
+#**Activate the virtual environment**
+
+source .venv/bin/activate
+
 **Features**
 
 - **✔** **Customer model** with normalization and structured attributes
@@ -23,19 +41,19 @@ The Customer class is designed to encapsulate the **essential personal and finan
 
 class Customer:
 
-	def _init_(self, name, age, address, occupation, balance, account_type):
- 		
-		self.name = name
-		
-		self.age = age
-		
-		self.address = address
-		
-		self.occupation = occupation.lower().strip() if occupation else ""
-		
-		self.balance = balance
-		
-		self.account_type = account_type.lower().strip() if account_type else ""
+    def_init_(self, name, age, address, occupation, balance, account_type):
+
+    self.name = name
+
+    self.age = age
+
+    self.address = address
+
+    self.occupation = occupation.lower().strip() if occupation else ""
+
+    self.balance = balance
+
+    self.account_type = account_type.lower().strip() if account_type else ""
 
 **2. Product Recommendation Model**
 The ProductRecommender uses a hierarchical set of rules to categorize customers and match them with relevant financial products (e.g., specific savings accounts or checking account). The recommendation is determined by four primary factors, applied in a specific order of precedence.
@@ -50,8 +68,9 @@ The ProductRecommender uses a hierarchical set of rules to categorize customers 
 
 - Balance Tiers (Financial Capacity): The customer's current account balance is grouped into defined tiers, which often serve as the _primary filter_ for premium or high-value products. ** \*\***Logic:\*\* Products are gated based on minimum balance requirements (e.g., a "Gold Account" might require a balance >$50,000).
 - Occupation Overrides: Certain occupations have pre-defined rules that **override** general balance- or age-based recommendations. This accounts for predictable income streams or regulatory restrictions.
-  
-  Logic: If the customer's occupation matches a specific value (e.g., "Student," "Self-Employed"), a specific              product set is immediately recommended or excluded.
+
+  Logic: If the customer's occupation matches a specific value (e.g., "Student," "Self-Employed"), a specific product set is immediately recommended or excluded.
+
 - Age Category: The customer's age is used to categorize them by life stage, enabling recommendations for products targeted at certain demographics (e.g student , retirement accounts)
 - Existing Account Type: The type of account(s) a customer already holds is used to infer their current financial needs and their affinity for related products.** \*\***Logic:\*\* If account_type is "Basic Checking," recommend an upgrade to "Premium Checking" based on their balance and usage.
 
@@ -82,30 +101,29 @@ This section describes the structure and format of the Customer Data Source, typ
 **4. Tool: banker_recommendation_tool**
 This section describes the banker_recommendation_tool, a Python function designed to be exposed to a Large Language Model (LLM) via OpenAI's function-calling mechanism. Its purpose is to retrieve a customer's information and generate a tailored product recommendation. The tool accepts a customer's name as input, searches the customer database, and uses the ProductRecommender logic to return a specific product recommendation along with key customer details.
 
-
 def banker_recommendation_tool(name: str):
-   	
-	customers = get_customers()
-  
-  	recommender = ProductRecommender()
+
+    customers = get_customers()
+
+    recommender = ProductRecommender()
 
     for c in customers:
-	
-    	if c["name"].lower() == name.lower():
-		
-          customer_obj = Customer(
-		  
-          name=c["name"],
-		  
-          age=c.get("age"),
-		  
-          address=c.get("address"),
-		  
-          occupation=c.get("occupation"),
-		  
-          balance=c.get("balance"),
-		  
-          account_type=c.get("account_type")
+
+    if c["name"].lower() == name.lower():
+
+    customer_obj = Customer(
+
+    name=c["name"],
+
+    age=c.get("age"),
+
+    address=c.get("address"),
+
+    occupation=c.get("occupation"),
+
+    balance=c.get("balance"),
+
+    account_type=c.get("account_type")
     )
     return {
         "name": c["name"],
@@ -114,7 +132,6 @@ def banker_recommendation_tool(name: str):
         "recommendation": recommender.recommend(customer_obj)
     }
     return {"error": f"No customer found with name {name}"}
-
 
 **5. Tools Definition**
 This section describes the standardized schema used to define and expose the banker_recommendation_tool to a Large Language Model (LLM) utilizing systems like OpenAI's function-calling feature. This schema array (TOOLS) serves as the official manifest that informs the LLM about the external functions it can call. It ensures the LLM understands the **name** , **purpose** , and required **inputs** for the tool, allowing it to correctly generate the necessary JSON arguments for execution.
@@ -125,28 +142,28 @@ TOOLS = [
 
 {
 
-	"type": "function",
+    "type": "function",
 
-	"function": {
+    "function": {
 
-		"name": "banker_recommendation_tool",
+    "name": "banker_recommendation_tool",
 
-		"description": "Return the banking recommendation for a given customer name.",
+    "description": "Return the banking recommendation for a given customer name.",
 
-		"parameters": {
+    "parameters": {
 
-			"type": "object",
+    "type": "object",
 
-			"properties": {
+    "properties": {
 
-				"name": {"type": "string"}
-			},
+    "name": {"type": "string"}
+    		},
     		"required": ["name"]
     	}
       }
     }
-]
 
+]
 
 **6. LLM Pipeline (Model → Tool → Model)**
 This section describes the three-stage process used by the application to handle a user request that requires the use of an external tool—specifically, the banker_recommendation_tool. This pattern is known as the **Model → Tool → Model** pipeline. The primary goal of this pipeline is to leverage the LLM's natural language understanding to correctly identify the need for a function call, execute that function, and then use the function's output to generate a final, accurate, and contextually rich response for the user.
@@ -155,22 +172,22 @@ This section describes the three-stage process used by the application to handle
 
 messages = [
 
-  {
+{
 
-     "role": "user", 
+    "role": "user",
 
-     "content": "Generate a banking recommendation for Maria Lopez."
- 
-   }
- ]
+    "content": "Generate a banking recommendation for Maria Lopez."
+
+}
+]
 
 response = client.chat.completions.create(
 
-  model="openai:gpt-5.1",
-  
-  messages=messages,
-  
-  tools=TOOLS
+model="openai:gpt-5.1",
+
+messages=messages,
+
+tools=TOOLS
 )
 
 msg = response.choices[0].message
@@ -179,13 +196,13 @@ msg = response.choices[0].message
 
 if msg.tool_calls:
 
-	tool_call = msg.tool_calls[0]
-	
-	args = json.loads(tool_call.function.arguments)
-	
-	tool_response = banker_recommendation_tool(\*\*args)
-	
-	print("TOOL RESPONSE:", tool_response)
+    tool_call = msg.tool_calls[0]
+
+    args = json.loads(tool_call.function.arguments)
+
+    tool_response = banker_recommendation_tool(\*\*args)
+
+    print("TOOL RESPONSE:", tool_response)
 
 **7. Export Customer Recommendation to CSV (Bonous Feature)** \*\*\*\*
 
@@ -215,6 +232,6 @@ Tool Response:
 
 "balance": 185000,
 
-"recommendation": "VIP Member; Certificate of Deposit (Silver CD); Tech Professional Investment Plan; Retirement Growth Plan (RGP); Overdraft 
+"recommendation": "VIP Member; Certificate of Deposit (Silver CD); Tech Professional Investment Plan; Retirement Growth Plan (RGP); Overdraft
 Protection Plan"
 }
