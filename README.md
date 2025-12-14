@@ -22,7 +22,8 @@ The system leverages:
 - **✔** Export Customer Recommendation to CSV (Bonous Feature) \*\*to generates customer_recommendations.csv
 - **✔** Fully compatible with gpt-5.1 tool invocation format
 
-![alt text](Project_Architecture.png)
+**Project Architecture**
+![alt text](assets/Project_Architecture.png)
 
 
 **Project Architecture**
@@ -109,7 +110,51 @@ The repository also includes a utility that exports the customer recommendations
 **LLM triggers:**
 banker_recommendation_tool(name="Maria Lopez")
 
-**Sample response:**
+messages = [
+
+  {
+
+     "role": "user", 
+
+     "content": "Generate a banking recommendation for Maria Lopez."
+ 
+   }
+ ]
+
+response = client.chat.completions.create(
+
+  model="openai:gpt-5.1",
+  
+  messages=messages,
+  
+  tools=TOOLS
+)
+
+msg = response.choices[0].message
+
+**Execute the tool if needed to validate**
+
+if msg.tool_calls:
+
+	tool_call = msg.tool_calls[0]
+	
+	args = json.loads(tool_call.function.arguments)
+	
+	tool_response = banker_recommendation_tool(\*\*args)
+	
+	print("TOOL RESPONSE:", tool_response)
+
+**7. Export Customer Recommendation to CSV (Bonous Feature)** \*\*\*\*
+
+This document describes the bonus functionality for exporting customer product recommendations to a CSV file. The **Export to CSV** feature provides a mechanism to generate a comprehensive spreadsheet containing customer details and their corresponding product recommendations. This is useful for auditing, analysis, or sharing the recommendations outside of the application.
+
+![alt text](assets/customer_recommend_csv.png)
+
+**8. Example Full Run**
+
+**User:** Generate a banking recommendation for Maria Lopez.
+
+Model Calls Tool:
 
 {
   "name": "Maria Lopez",
