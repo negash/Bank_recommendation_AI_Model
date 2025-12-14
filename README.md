@@ -1,11 +1,18 @@
-**Banker Recommendation System**
+**Bank Recommendation AI Model**
 
-**Banker Recommendation System (LLM + Function Calling)**
-An end-to-end AI-powered banking recommendation engine built using **Python** , **OpenAI function calling** , and a rule-based financial product model.
+An AI-powered banking product recommendation engine that combines Python, a rule-based recommender, and OpenAI’s function-calling capabilities to deliver personalized financial product suggestions based on customer profiles.
 
-This project demonstrates how a Large Language Model (LLM) can intelligently call backend tools to produce personalized product recommendations for bank customers.
+**Project Overview**
 
-**Features**
+This repository demonstrates a complete end-to-end recommendation system where a Large Language Model (LLM) intelligently interacts with backend logic to recommend appropriate bank products tailored to individual customer attributes such as age, balance, occupation, and account type.
+
+The system leverages:
+
+- Python for business logic and tool implementation
+- OpenAI function calling to integrate LLM reasoning with structured backend functions
+- A rule-based recommendation model representing real-world product eligibility
+
+**Key Features**
 
 - **✔** **Customer model** with normalization and structured attributes
 - **✔** **Rule-based Product Recommender** (age, balance, occupation, account type)
@@ -18,140 +25,90 @@ This project demonstrates how a Large Language Model (LLM) can intelligently cal
 **Project Architecture**
 ![alt text](assets/Project_Architecture.png)
 
+
+**Project Architecture**
+
 **1. Customer Model**
-The Customer class is designed to encapsulate the **essential personal and financial information** of an individual customer, typically for use in a banking or financial application.
 
-class Customer:
+A Customer class that encapsulates core personal and financial information such as:
 
-	def _init_(self, name, age, address, occupation, balance, account_type):
- 		
-		self.name = name
-		
-		self.age = age
-		
-		self.address = address
-		
-		self.occupation = occupation.lower().strip() if occupation else ""
-		
-		self.balance = balance
-		
-		self.account_type = account_type.lower().strip() if account_type else ""
+- Name
+- Age
+- Address
+- Occupation
+- Balance
+- Account type
 
-**2. Product Recommendation Model**
-The ProductRecommender uses a hierarchical set of rules to categorize customers and match them with relevant financial products (e.g., specific savings accounts or checking account). The recommendation is determined by four primary factors, applied in a specific order of precedence.
+This standardized model enables consistent input handling and recommendation logic execution.
 
-**✔\*\*** Balance tiers\*\*
+**2. Product Recommendation Logic**
+The Product Recommender uses a set of hierarchical rules to match customers with the right financial products
+Logic is based on:
 
-**✔\*\*** Occupation overrides\*\*
+**1. Balance Tiers** — Groups customers by account balance.
+   
+**2. Occupation Overrides** — Occupation-specific rules that adjust product eligibility.
 
-**✔\*\*** Age category\*\*
+**3. Age Categories** — Life-stage based product targeting.
 
-**✔\*\*** Existing account type\*\*
+**4. Account Type** — Existing account influences upgrade or complementary product offers.
 
-- Balance Tiers (Financial Capacity): The customer's current account balance is grouped into defined tiers, which often serve as the _primary filter_ for premium or high-value products. ** \*\***Logic:\*\* Products are gated based on minimum balance requirements (e.g., a "Gold Account" might require a balance >$50,000).
-- Occupation Overrides: Certain occupations have pre-defined rules that **override** general balance- or age-based recommendations. This accounts for predictable income streams or regulatory restrictions.
-  
-  Logic: If the customer's occupation matches a specific value (e.g., "Student," "Self-Employed"), a specific              product set is immediately recommended or excluded.
-- Age Category: The customer's age is used to categorize them by life stage, enabling recommendations for products targeted at certain demographics (e.g student , retirement accounts)
-- Existing Account Type: The type of account(s) a customer already holds is used to infer their current financial needs and their affinity for related products.** \*\***Logic:\*\* If account_type is "Basic Checking," recommend an upgrade to "Premium Checking" based on their balance and usage.
+Example output might include recommendations like:
 
-Example output:
-"Platinum Saving Member; Retirement Growth Plan (RGP); Overdraft Protection Plan"
+VIP Member; Silver CD; Investment Plan; Retirement Growth Plan; Overdraft Protection
 
-**3. Customer Data Source**
-This section describes the structure and format of the Customer Data Source, typically used for system initialization, analysis, or as \*\* **input for applications like the ProductRecommender. This data source serves as a standardized collection of customer records, providing essential personal and financial information in a machine-readable format (JSON). a **JSON array** where each element in the array is a single **JSON object\*\* representing one customer record.
+**Function:** banker_recommendation_tool
 
-[
-
-{
-"name": "Maria Lopez",
-
-"age": 33,
-
-"occupation": "Engineer",
-
-"balance": 185000,
-
-"address": "5324 W Main Street",
-
-"account_type": "checking"
-},
-...
-]
-
-**4. Tool: banker_recommendation_tool**
-This section describes the banker_recommendation_tool, a Python function designed to be exposed to a Large Language Model (LLM) via OpenAI's function-calling mechanism. Its purpose is to retrieve a customer's information and generate a tailored product recommendation. The tool accepts a customer's name as input, searches the customer database, and uses the ProductRecommender logic to return a specific product recommendation along with key customer details.
-
+A Python function exposed to the LLM via OpenAI’s function calling interface:
 
 def banker_recommendation_tool(name: str):
-   	
-	customers = get_customers()
-  
-  	recommender = ProductRecommender()
+ 
+    customers = get_customers()
+    recommender = ProductRecommender()
 
     for c in customers:
-	
-    	if c["name"].lower() == name.lower():
-		
-          customer_obj = Customer(
-		  
-          name=c["name"],
-		  
-          age=c.get("age"),
-		  
-          address=c.get("address"),
-		  
-          occupation=c.get("occupation"),
-		  
-          balance=c.get("balance"),
-		  
-          account_type=c.get("account_type")
-    )
-    return {
-        "name": c["name"],
-        "occupation": c["occupation"],
-        "balance": c["balance"],
-        "recommendation": recommender.recommend(customer_obj)
-    }
+        if c["name"].lower() == name.lower():
+            customer_obj = Customer(
+                name=c["name"],
+                age=c.get("age"),
+                address=c.get("address"),
+                occupation=c.get("occupation"),
+                balance=c.get("balance"),
+                account_type=c.get("account_type")
+            )
+            return {
+                "name": c["name"],
+                "occupation": c["occupation"],
+                "balance": c["balance"],
+                "recommendation": recommender.recommend(customer_obj)
+            }
     return {"error": f"No customer found with name {name}"}
 
+This tool accepts a customer name, retrieves the corresponding record, runs the recommendation logic, and returns a structured recommendation response.
 
-**5. Tools Definition**
-This section describes the standardized schema used to define and expose the banker_recommendation_tool to a Large Language Model (LLM) utilizing systems like OpenAI's function-calling feature. This schema array (TOOLS) serves as the official manifest that informs the LLM about the external functions it can call. It ensures the LLM understands the **name** , **purpose** , and required **inputs** for the tool, allowing it to correctly generate the necessary JSON arguments for execution.
+**LLM Interaction Pipeline**
 
-The LLM uses this schema to call the tool:
+The system follows a **Model → Tool → Model** workflow:
 
-TOOLS = [
+1. User issues a natural language request to generate a recommendation.
 
-{
+2. The LLM identifies when a function call is needed and calls banker_recommendation_tool.
 
-	"type": "function",
+3. The backend executes the function and returns results.
 
-	"function": {
+4. The LLM produces the final formatted recommendation.
 
-		"name": "banker_recommendation_tool",
+**CSV Export Feature (Bonus)**
 
-		"description": "Return the banking recommendation for a given customer name.",
+The repository also includes a utility that exports the customer recommendations into a CSV file, useful for reporting, auditing, and downstream analysis.
 
-		"parameters": {
+**Example Usage**
 
-			"type": "object",
+**User request:**
+"Generate a banking recommendation for Maria Lopez"
 
-			"properties": {
-
-				"name": {"type": "string"}
-			},
-    		"required": ["name"]
-    	}
-      }
-    }
-]
-
-
-**6. LLM Pipeline (Model → Tool → Model)**
-This section describes the three-stage process used by the application to handle a user request that requires the use of an external tool—specifically, the banker_recommendation_tool. This pattern is known as the **Model → Tool → Model** pipeline. The primary goal of this pipeline is to leverage the LLM's natural language understanding to correctly identify the need for a function call, execute that function, and then use the function's output to generate a final, accurate, and contextually rich response for the user.
-
-**Input message**
+**LLM triggers:**
+banker_recommendation_tool(name="Maria Lopez")
 
 messages = [
 
@@ -200,21 +157,22 @@ This document describes the bonus functionality for exporting customer product r
 Model Calls Tool:
 
 {
-"tool": "banker_recommendation_tool",
-
-"arguments": { "name": "Maria Lopez" }
-
+  "name": "Maria Lopez",
+  "occupation": "engineer",
+  "balance": 185000,
+  "recommendation": "VIP Member; Silver CD; Tech Professional Investment Plan; Retirement Growth Plan (RGP); Overdraft Protection Plan"
 }
 
-Tool Response:
+**Technologies Used**
 
-{
-"name": "Maria Lopez",
+- Python
 
-"occupation": "engineer",
+- OpenAI function calling API (GPT-5.1 compatible)
 
-"balance": 185000,
+- JSON data structures
 
-"recommendation": "VIP Member; Certificate of Deposit (Silver CD); Tech Professional Investment Plan; Retirement Growth Plan (RGP); Overdraft 
-Protection Plan"
-}
+- Rule-based logic engine
+
+**Closing Notes**
+
+This project serves as a practical example of how to combine rule-based systems with LLM capabilities for real-world decision support systems in the banking domain. It highlights how structured backend tools can be integrated into an LLM-driven workflow for reliable, explainable outputs.
