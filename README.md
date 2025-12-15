@@ -110,10 +110,6 @@ The system follows a** \*\***Model → Tool → Model\*\* workflow:
 3. The backend executes the function and returns results.
 4. The LLM produces the final formatted recommendation.
 
-**CSV Export Feature (Bonus)**
-
-The repository also includes a utility that exports the customer recommendations into a CSV file, useful for reporting, auditing, and downstream analysis.
-
 **Example Usage**
 
 **User request:** "Generate a banking recommendation for Maria Lopez"
