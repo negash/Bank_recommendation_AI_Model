@@ -1,10 +1,9 @@
 import os
-from ..models.recommend_products_v2 import Customer, ProductRecommender
-from ..data.Customers_data import get_customers
-from ..llm.defin_tools import TOOLS
-from openai import OpenAI
 import json
-from ..tools.banker_recommendation_tool import banker_recommendation_tool
+from openai import OpenAI
+
+from llm.defin_tools import TOOLS
+from tools.banker_recommendation_tool import banker_recommendation_tool
 
 # Ensure your OpenAI API key is set in the environment variables, or replace with your key directly.
 openai_api_key = os.getenv("OPENAI_API_KEY")
