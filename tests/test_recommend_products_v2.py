@@ -1,8 +1,9 @@
-from models.recommend_products_v2 import Customer, ProductRecommender
+""""""
+from src.models.recommend_products_v2 import Customer, ProductRecommender
 
 
 def test_customer_normalization():
-    # occupation and account_type should be lowercased and stripped
+    """Test that Customer class normalizes occupation and account_type."""
     c = Customer(name="Bob", age=30, address="",
                  occupation="  Engineer  ", balance=0, account_type=" CHECKING ")
     assert c.occupation == "engineer"
@@ -10,8 +11,8 @@ def test_customer_normalization():
 
 
 def test_recommend_for_typical_customer():
-    # Based on the rules in recommend_products_v2, this customer should get
-    # balance-based, occupation-based, age-based and account-type recommendations
+    """Test recommendations for a typical customer."""
+
     cust = Customer(
         name="Alice Brown",
         age=45,
@@ -41,7 +42,7 @@ def test_recommend_for_typical_customer():
 
 
 def test_occupation_normalization_map():
-    # A misspelled occupation 'techer' should map to 'teacher' and yield teacher offers
+    """Test that occupation normalization maps known variants correctly."""
     cust = Customer(name="David", age=35, address="",
                     occupation="techer", balance=4500, account_type="")
     recommender = ProductRecommender()
@@ -51,7 +52,7 @@ def test_occupation_normalization_map():
 
 
 def test_default_when_no_rules_apply():
-    # If no rules match, default recommendation should be returned
+    """Test that default recommendation is given when no rules apply."""
     cust = Customer(name="Empty", age=None, address="",
                     occupation="", balance=0, account_type="")
     recommender = ProductRecommender()
