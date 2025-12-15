@@ -1,4 +1,4 @@
-""""""
+""""Unit tests for recommend_products_v2 module."""
 from src.models.recommend_products_v2 import Customer, ProductRecommender
 
 
