@@ -103,7 +103,7 @@ This tool accepts a customer name, retrieves the corresponding record, runs the 
 
 **LLM Interaction Pipeline**
 
-The system follows a** \*\***Model → Tool → Model\*\* workflow:
+The system follows a **_Model → Tool → Model_** workflow:
 
 1. User issues a natural language request to generate a recommendation.
 2. The LLM identifies when a function call is needed and calls banker_recommendation_tool.
@@ -152,19 +152,13 @@ tool_response = banker_recommendation_tool(\*\*args)
 print("TOOL RESPONSE:", tool_response)
 ```
 
-**7. Export Customer Recommendation to CSV (Bonous Feature)** \*\*\*\*
+**Response: { "name": "Maria Lopez", "occupation": "engineer", "balance": 185000, "recommendation": "VIP Member; Silver CD; Tech Professional Investment Plan; Retirement Growth Plan (RGP); Overdraft Protection Plan" }**
+
+**7. Export Customer Recommendation to CSV (Bonous Feature)**
 
 This document describes the bonus functionality for exporting customer product recommendations to a CSV file. The** \*\***Export to CSV\*\* feature provides a mechanism to generate a comprehensive spreadsheet containing customer details and their corresponding product recommendations. This is useful for auditing, analysis, or sharing the recommendations outside of the application.
 
 [![alt text](https://github.com/negash/Bank_recommendation_AI_Model/raw/main/assets/customer_recommend_csv.png)](https://github.com/negash/Bank_recommendation_AI_Model/blob/main/assets/customer_recommend_csv.png)
-
-**8. Example Full Run**
-
-**User:** Generate a banking recommendation for Maria Lopez.
-
-Model Calls Tool:
-
-{ "name": "Maria Lopez", "occupation": "engineer", "balance": 185000, "recommendation": "VIP Member; Silver CD; Tech Professional Investment Plan; Retirement Growth Plan (RGP); Overdraft Protection Plan" }
 
 **Technologies Used**
 
