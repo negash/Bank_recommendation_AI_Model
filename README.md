@@ -12,6 +12,24 @@ The system leverages:
 - OpenAI function calling to integrate LLM reasoning with structured backend functions
 - A rule-based recommendation model representing real-world product eligibility
 
+**Installation**
+
+To install all required dependencies for this project, run the following command:
+
+pip install -r requirements.txt
+
+**Optional :**
+
+Create and activate a virtual environment to isolate project dependencies:
+
+**Create a virtual environment**
+
+python -m venv .venv
+
+**Activate the virtual environment**
+
+source .venv/bin/activate
+
 **Key Features**
 
 - **✔** **Customer model** with normalization and structured attributes
@@ -24,9 +42,6 @@ The system leverages:
 
 **Project Architecture**
 ![alt text](assets/Project_Architecture.png)
-
-
-**Project Architecture**
 
 **1. Customer Model**
 
@@ -41,12 +56,10 @@ A Customer class that encapsulates core personal and financial information such 
 
 This standardized model enables consistent input handling and recommendation logic execution.
 
-**2. Product Recommendation Logic**
-The Product Recommender uses a set of hierarchical rules to match customers with the right financial products
-Logic is based on:
+**2. Product Recommendation Logic** The Product Recommender uses a set of hierarchical rules to match customers with the right financial products Logic is based on:
 
 **1. Balance Tiers** — Groups customers by account balance.
-   
+
 **2. Occupation Overrides** — Occupation-specific rules that adjust product eligibility.
 
 **3. Age Categories** — Life-stage based product targeting.
@@ -62,40 +75,39 @@ VIP Member; Silver CD; Investment Plan; Retirement Growth Plan; Overdraft Protec
 A Python function exposed to the LLM via OpenAI’s function calling interface:
 
 def banker_recommendation_tool(name: str):
- 
-    customers = get_customers()
-    recommender = ProductRecommender()
 
-    for c in customers:
-        if c["name"].lower() == name.lower():
-            customer_obj = Customer(
-                name=c["name"],
-                age=c.get("age"),
-                address=c.get("address"),
-                occupation=c.get("occupation"),
-                balance=c.get("balance"),
-                account_type=c.get("account_type")
-            )
-            return {
-                "name": c["name"],
-                "occupation": c["occupation"],
-                "balance": c["balance"],
-                "recommendation": recommender.recommend(customer_obj)
-            }
-    return {"error": f"No customer found with name {name}"}
+```
+customers = get_customers()
+recommender = ProductRecommender()
+
+for c in customers:
+    if c["name"].lower() == name.lower():
+        customer_obj = Customer(
+            name=c["name"],
+            age=c.get("age"),
+            address=c.get("address"),
+            occupation=c.get("occupation"),
+            balance=c.get("balance"),
+            account_type=c.get("account_type")
+        )
+        return {
+            "name": c["name"],
+            "occupation": c["occupation"],
+            "balance": c["balance"],
+            "recommendation": recommender.recommend(customer_obj)
+        }
+return {"error": f"No customer found with name {name}"}
+```
 
 This tool accepts a customer name, retrieves the corresponding record, runs the recommendation logic, and returns a structured recommendation response.
 
 **LLM Interaction Pipeline**
 
-The system follows a **Model → Tool → Model** workflow:
+The system follows a** \*\***Model → Tool → Model\*\* workflow:
 
 1. User issues a natural language request to generate a recommendation.
-
 2. The LLM identifies when a function call is needed and calls banker_recommendation_tool.
-
 3. The backend executes the function and returns results.
-
 4. The LLM produces the final formatted recommendation.
 
 **CSV Export Feature (Bonus)**
@@ -104,31 +116,29 @@ The repository also includes a utility that exports the customer recommendations
 
 **Example Usage**
 
-**User request:**
-"Generate a banking recommendation for Maria Lopez"
+**User request:** "Generate a banking recommendation for Maria Lopez"
 
-**LLM triggers:**
-banker_recommendation_tool(name="Maria Lopez")
+**LLM triggers:** banker_recommendation_tool(name="Maria Lopez")
 
 messages = [
 
-  {
+{
 
-     "role": "user", 
+```
+ "role": "user",
 
-     "content": "Generate a banking recommendation for Maria Lopez."
- 
-   }
- ]
+ "content": "Generate a banking recommendation for Maria Lopez."
+```
+
+} ]
 
 response = client.chat.completions.create(
 
-  model="openai:gpt-5.1",
-  
-  messages=messages,
-  
-  tools=TOOLS
-)
+model="openai:gpt-5.1",
+
+messages=messages,
+
+tools=TOOLS )
 
 msg = response.choices[0].message
 
@@ -136,19 +146,21 @@ msg = response.choices[0].message
 
 if msg.tool_calls:
 
-	tool_call = msg.tool_calls[0]
-	
-	args = json.loads(tool_call.function.arguments)
-	
-	tool_response = banker_recommendation_tool(\*\*args)
-	
-	print("TOOL RESPONSE:", tool_response)
+```
+tool_call = msg.tool_calls[0]
+
+args = json.loads(tool_call.function.arguments)
+
+tool_response = banker_recommendation_tool(\*\*args)
+
+print("TOOL RESPONSE:", tool_response)
+```
 
 **7. Export Customer Recommendation to CSV (Bonous Feature)** \*\*\*\*
 
-This document describes the bonus functionality for exporting customer product recommendations to a CSV file. The **Export to CSV** feature provides a mechanism to generate a comprehensive spreadsheet containing customer details and their corresponding product recommendations. This is useful for auditing, analysis, or sharing the recommendations outside of the application.
+This document describes the bonus functionality for exporting customer product recommendations to a CSV file. The** \*\***Export to CSV\*\* feature provides a mechanism to generate a comprehensive spreadsheet containing customer details and their corresponding product recommendations. This is useful for auditing, analysis, or sharing the recommendations outside of the application.
 
-![alt text](assets/customer_recommend_csv.png)
+[![alt text](https://github.com/negash/Bank_recommendation_AI_Model/raw/main/assets/customer_recommend_csv.png)](https://github.com/negash/Bank_recommendation_AI_Model/blob/main/assets/customer_recommend_csv.png)
 
 **8. Example Full Run**
 
@@ -156,21 +168,13 @@ This document describes the bonus functionality for exporting customer product r
 
 Model Calls Tool:
 
-{
-  "name": "Maria Lopez",
-  "occupation": "engineer",
-  "balance": 185000,
-  "recommendation": "VIP Member; Silver CD; Tech Professional Investment Plan; Retirement Growth Plan (RGP); Overdraft Protection Plan"
-}
+{ "name": "Maria Lopez", "occupation": "engineer", "balance": 185000, "recommendation": "VIP Member; Silver CD; Tech Professional Investment Plan; Retirement Growth Plan (RGP); Overdraft Protection Plan" }
 
 **Technologies Used**
 
 - Python
-
 - OpenAI function calling API (GPT-5.1 compatible)
-
 - JSON data structures
-
 - Rule-based logic engine
 
 **Closing Notes**
