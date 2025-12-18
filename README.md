@@ -41,7 +41,8 @@ source .venv/bin/activate
 - **✔** Fully compatible with gpt-5.1 tool invocation format
 
 **Project Architecture**
-![alt text](assets/Project_Architecture.png)
+
+<img src="assets/Project_Architecture.png" style="width:40%; height:auto;" alt="Project Architecture" />
 
 **1. Customer Model**
 
