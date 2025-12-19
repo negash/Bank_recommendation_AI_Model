@@ -160,6 +160,21 @@ This document describes the bonus functionality for exporting customer product r
 
 [![alt text](https://github.com/negash/Bank_recommendation_AI_Model/raw/main/assets/customer_recommend_csv.png)](https://github.com/negash/Bank_recommendation_AI_Model/blob/main/assets/customer_recommend_csv.png)
 
+**8. Customer Analytics Dashboard**
+
+The **Analytics Module** (analytics.py) processes customer demographic and financial data to generate a consolidated visual report. It bridges the gap between raw customer profiles and actionable business intelligence.
+
+**Key Feature:**
+
+- **Segment Insights** : A pie chart visualizing the distribution of customer occupations (e.g., Engineer, Student, Entrepreneur).
+- **Predictive Trends** : A scatter plot analyzing the correlation between Age and Account Balance to identify high-value demographics.
+- **Product Demand** : A ranked bar chart showing the most frequently recommended financial products based on the system's logic.
+- **Single-File Output** : Generates a high-resolution customer_analytics_dashboard.png for easy sharing and reporting.
+
+**Analytics output :**
+
+<img src="assets/customer_analytics_dashboard.png" style="width:60%; height:auto;" alt="Project Architecture" />
+
 **Technologies Used**
 
 - Python
