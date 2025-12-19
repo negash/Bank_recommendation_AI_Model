@@ -1,12 +1,10 @@
-from ..models.recommend_products_v2 import Customer, ProductRecommender
-from ..data.Customers_data import get_customers
+""" """
+from src.models.recommend_products_v2 import Customer, ProductRecommender
+from src.data.Customers_data import get_customers
 
 
 def banker_recommendation_tool(name: str):
-    # -----------------------------
-    # FETCH CUSTOMERS AND INITIALIZE RECOMMENDER
-    # -----------------------------
-
+    """  FETCH CUSTOMERS AND INITIALIZE RECOMMENDER"""
     customers = get_customers()
     recommender = ProductRecommender()
 

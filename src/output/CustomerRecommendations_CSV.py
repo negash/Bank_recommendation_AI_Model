@@ -40,3 +40,5 @@ with open(output_file, mode="w", newline="", encoding="utf-8") as file:
         ])
 
 print(f"CSV file '{output_file}' created successfully!")
+
+# run this on root directory python -m src.output.analytics
