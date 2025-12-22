@@ -32,13 +32,13 @@ source .venv/bin/activate
 
 **Key Features**
 
-- **✔** **Customer model** with normalization and structured attributes
-- **✔** **Rule-based Product Recommender** (age, balance, occupation, account type)
-- **✔** **Function-calling tool (banker_recommendation_tool)** exposed to the LLM
-- **✔** **Automatic model → tool → model response pipeline**
-- **✔** **Customer dataset in JSON** (get_customers())
-- **✔** Export Customer Recommendation to CSV (Bonous Feature) \*\*to generates customer_recommendations.csv
-- **✔** Fully compatible with gpt-5.1 tool invocation format
+- **Customer model** with normalization and structured attributes
+- **Rule-based Product Recommender** (age, balance, occupation, account type)
+- **Function-calling tool (banker_recommendation_tool)** exposed to the LLM
+- **Automatic model → tool → model response pipeline**
+- **Customer dataset in JSON** (get_customers())
+- Export Customer Recommendation to CSV (Bonous Feature) \*\*to generates customer_recommendations.csv
+- Fully compatible with gpt-5.1 tool invocation format
 
 **Project Architecture**
 
@@ -59,19 +59,19 @@ This standardized model enables consistent input handling and recommendation log
 
 **2. Product Recommendation Logic** The Product Recommender uses a set of hierarchical rules to match customers with the right financial products Logic is based on:
 
-**1. Balance Tiers** — Groups customers by account balance.
+**. Balance Tiers** — Groups customers by account balance.
 
-**2. Occupation Overrides** — Occupation-specific rules that adjust product eligibility.
+**. Occupation Overrides** — Occupation-specific rules that adjust product eligibility.
 
-**3. Age Categories** — Life-stage based product targeting.
+**. Age Categories** — Life-stage based product targeting.
 
-**4. Account Type** — Existing account influences upgrade or complementary product offers.
+**. Account Type** — Existing account influences upgrade or complementary product offers.
 
 Example output might include recommendations like:
 
 VIP Member; Silver CD; Investment Plan; Retirement Growth Plan; Overdraft Protection
 
-**Function:** banker_recommendation_tool
+**3. Function:** banker_recommendation_tool
 
 A Python function exposed to the LLM via OpenAI’s function calling interface:
 
@@ -102,14 +102,14 @@ return {"error": f"No customer found with name {name}"}
 
 This tool accepts a customer name, retrieves the corresponding record, runs the recommendation logic, and returns a structured recommendation response.
 
-**LLM Interaction Pipeline**
+**4. LLM Interaction Pipeline**
 
 The system follows a **_Model → Tool → Model_** workflow:
 
-1. User issues a natural language request to generate a recommendation.
-2. The LLM identifies when a function call is needed and calls banker_recommendation_tool.
-3. The backend executes the function and returns results.
-4. The LLM produces the final formatted recommendation.
+. User issues a natural language request to generate a recommendation.
+. The LLM identifies when a function call is needed and calls banker_recommendation_tool.
+. The backend executes the function and returns results.
+. The LLM produces the final formatted recommendation.
 
 **Example Usage**
 
@@ -155,13 +155,13 @@ print("TOOL RESPONSE:", tool_response)
 
 **Response: { "name": "Maria Lopez", "occupation": "engineer", "balance": 185000, "recommendation": "VIP Member; Silver CD; Tech Professional Investment Plan; Retirement Growth Plan (RGP); Overdraft Protection Plan" }**
 
-**7. Export Customer Recommendation to CSV (Bonous Feature)**
+**5. Export Customer Recommendation to CSV (Bonous Feature)**
 
 This document describes the bonus functionality for exporting customer product recommendations to a CSV file. The** \*\***Export to CSV\*\* feature provides a mechanism to generate a comprehensive spreadsheet containing customer details and their corresponding product recommendations. This is useful for auditing, analysis, or sharing the recommendations outside of the application.
 
 [![alt text](https://github.com/negash/Bank_recommendation_AI_Model/raw/main/assets/customer_recommend_csv.png)](https://github.com/negash/Bank_recommendation_AI_Model/blob/main/assets/customer_recommend_csv.png)
 
-**8. Customer Analytics Dashboard**
+**6. Customer Analytics Dashboard**
 
 The **Analytics Module** (analytics.py) processes customer demographic and financial data to generate a consolidated visual report. It bridges the gap between raw customer profiles and actionable business intelligence.
 
@@ -176,7 +176,7 @@ The **Analytics Module** (analytics.py) processes customer demographic and finan
 
 <img src="assets/customer_analytics_dashboard.png" style="width:90%; height:auto;" alt="Project Architecture" />
 
-**Technologies Used**
+**7. Technologies Used**
 
 - Python
 - OpenAI function calling API (GPT-5.1 compatible)
