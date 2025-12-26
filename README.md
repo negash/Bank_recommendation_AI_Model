@@ -174,7 +174,7 @@ The **Analytics Module** (analytics.py) processes customer demographic and finan
 
 **Analytics output :**
 
-<img src="assets/customer_analytics_dashboard.png" style="width:90%; height:auto;" alt="Project Architecture" />
+<img src="assets/customer_analytics_dashboard.png" style="width:110%; height:auto;" alt="Project Architecture" />
 
 **7. Technologies Used**
 
