@@ -15,7 +15,6 @@ The system leverages:
 **Installation**
 
 To install all required dependencies for this project, run the following command:
-
 pip install -r requirements.txt
 
 **Optional :**
