@@ -58,13 +58,13 @@ This standardized model enables consistent input handling and recommendation log
 
 **2. Product Recommendation Logic** The Product Recommender uses a set of hierarchical rules to match customers with the right financial products Logic is based on:
 
-**. Balance Tiers** — Groups customers by account balance.
+**Balance Tiers** — Groups customers by account balance.
 
-**. Occupation Overrides** — Occupation-specific rules that adjust product eligibility.
+**Occupation Overrides** — Occupation-specific rules that adjust product eligibility.
 
-**. Age Categories** — Life-stage based product targeting.
+**Age Categories** — Life-stage based product targeting.
 
-**. Account Type** — Existing account influences upgrade or complementary product offers.
+**Account Type** — Existing account influences upgrade or complementary product offers.
 
 Example output might include recommendations like:
 
