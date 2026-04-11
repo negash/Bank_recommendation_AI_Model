@@ -61,12 +61,6 @@ Bank_recommendation_AI_Model/</br>
 
 **🚀 Installation**
 
-# Clone the repository
-git clone https://github.com/negash/Bank_recommendation_AI_Model.git
-
-# Navigate into the project
-cd Bank_recommendation_AI_Model
-
 # Install dependencies
 pip install -r requirements.txt
 
