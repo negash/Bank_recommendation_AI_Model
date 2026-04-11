@@ -1,20 +1,46 @@
-**Bank Recommendation AI Model**
+<p align="center">
+  <img src="assets/Banner3.png" alt="Bank Recommendation AI Model Banner"/>
+</p>
 
-An AI-powered banking product recommendation engine that combines Python, a rule-based recommender, and OpenAI’s function-calling capabilities to deliver personalized financial product suggestions based on customer profiles.
+An intelligent machine learning system that analyzes customer data and recommends personalized banking products.
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.9+-blue" />
+  <img src="https://img.shields.io/badge/ML-Scikit--Learn-orange" />
+  <img src="https://img.shields.io/badge/Status-Active-success" />
+  <img src="https://img.shields.io/badge/License-MIT-green" />
+</p>
 
 **Project Overview**
 
 This repository demonstrates a complete end-to-end recommendation system where a Large Language Model (LLM) intelligently interacts with backend logic to recommend appropriate bank products tailored to individual customer attributes such as age, balance, occupation, and account type.
 
-The system leverages:
+🏗️ **Project Structure**
+
+Bank_recommendation_AI_Model/                                    </br>
+│── data/                # Dataset files
+│── notebooks/           # Jupyter notebooks (EDA, modeling)     </br>
+│── src/                 # Core ML scripts                        </br>
+│── models/              # Saved models                           </br>
+│── app/                 # (Optional) Web app / API                </br>
+│── README.md                                                      </br>
+│── requirements.txt                                               </br>
+
+⚙️ **The system leverages:**
 
 - Python for business logic and tool implementation
 - OpenAI function calling to integrate LLM reasoning with structured backend functions
 - A rule-based recommendation model representing real-world product eligibility
 
-**Installation**
+**🚀 Installation**
 
-To install all required dependencies for this project, run the following command:
+# Clone the repository
+git clone https://github.com/negash/Bank_recommendation_AI_Model.git
+
+# Navigate into the project
+cd Bank_recommendation_AI_Model
+
+# Install dependencies
 pip install -r requirements.txt
 
 **Optional :**
@@ -28,6 +54,13 @@ python -m venv .venv
 **Activate the virtual environment**
 
 source .venv/bin/activate
+
+**▶️ Usage**
+# Run notebook
+jupyter notebook
+
+# OR run script
+python src/main.py
 
 **Key Features**
 
@@ -182,6 +215,17 @@ The **Analytics Module** (analytics.py) processes customer demographic and finan
 - JSON data structures
 - Rule-based logic engine
 
-**Closing Notes**
+**Future Improvements**
+- Deep Learning models
+- Real-time recommendation API
+- Streamlit / Web dashboard
 
-This project serves as a practical example of how to combine rule-based systems with LLM capabilities for real-world decision support systems in the banking domain. It highlights how structured backend tools can be integrated into an LLM-driven workflow for reliable, explainable outputs.
+📜 License
+
+This project is licensed under the MIT License.
+
+👤 Author
+
+Negash
+
+GitHub: https://github.com/negash
