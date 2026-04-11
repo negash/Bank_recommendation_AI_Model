@@ -2,7 +2,11 @@
   <img src="assets/Banner3.png" alt="Bank Recommendation AI Model Banner"/>
 </p>
 
-An intelligent machine learning system that analyzes customer data and recommends personalized banking products.
+<h1 align="center">🏦 Bank Recommendation AI Model</h1>
+
+<p align="center">
+  AI-powered system for personalized financial product recommendations
+</p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.9+-blue" />
@@ -11,20 +15,43 @@ An intelligent machine learning system that analyzes customer data and recommend
   <img src="https://img.shields.io/badge/License-MIT-green" />
 </p>
 
+## 📚 Table of Contents
+- Overview
+- Features
+- Installation
+- Usage
+- Results
+- Future Work
+  
 **Project Overview**
 
 This repository demonstrates a complete end-to-end recommendation system where a Large Language Model (LLM) intelligently interacts with backend logic to recommend appropriate bank products tailored to individual customer attributes such as age, balance, occupation, and account type.
 
-🏗️ **Project Structure**
+## ❗ Problem Statement
 
-Bank_recommendation_AI_Model/                                    </br>
-│── data/                # Dataset files
-│── notebooks/           # Jupyter notebooks (EDA, modeling)     </br>
-│── src/                 # Core ML scripts                        </br>
-│── models/              # Saved models                           </br>
-│── app/                 # (Optional) Web app / API                </br>
-│── README.md                                                      </br>
-│── requirements.txt                                               </br>
+Banks struggle to recommend the right products to customers due to:
+- Large volumes of customer data
+- Lack of personalization
+- Inefficient manual decision-making
+
+This project solves that using machine learning.
+
+## Features
+
+- Personalized recommendations
+- Data preprocessing pipeline
+- ML model training
+  
+## 📁 Project Structure
+
+Bank_recommendation_AI_Model/</br>
+├── 📂 data/                </br>
+├── 📂 notebooks/           </br>
+├── 📂 src/                 </br>
+├── 📂 models/              </br>
+├── 📂 assets/              </br>
+├── README.md               </br>
+└── requirements.txt        </br>
 
 ⚙️ **The system leverages:**
 
@@ -64,14 +91,29 @@ python src/main.py
 
 **Key Features**
 
-- **Customer model** with normalization and structured attributes
-- **Rule-based Product Recommender** (age, balance, occupation, account type)
-- **Function-calling tool (banker_recommendation_tool)** exposed to the LLM
-- **Automatic model → tool → model response pipeline**
-- **Customer dataset in JSON** (get_customers())
-- Export Customer Recommendation to CSV (Bonous Feature) \*\*to generates customer_recommendations.csv
-- Fully compatible with gpt-5.1 tool invocation format
+##   Key Features
 
+-   **Customer Modeling**
+   Structured customer profiles with normalized attributes for accurate analysis  
+
+-   **Rule-Based Recommendation Engine**
+   Suggests banking products based on age, balance, occupation, and account type  
+
+-   **LLM Tool Integration**
+   Seamless function-calling pipeline connecting AI models with recommendation logic  
+
+-   **Automated Decision Pipeline**
+   End-to-end flow: input → model → tool → intelligent response  
+
+-  **JSON-Based Data Handling**
+   Flexible and scalable customer dataset management  
+
+-  **CSV Export**
+   Generate customer recommendation reports for analysis and business use  
+
+-  **Modern AI Compatibility**
+   Fully compatible with advanced LLM tool invocation frameworks
+    
 **Project Architecture**
 
 <img src="assets/Project_Architecture.png" style="width:40%; height:auto;" alt="Project Architecture" />
@@ -187,9 +229,9 @@ print("TOOL RESPONSE:", tool_response)
 
 **Response: { "name": "Maria Lopez", "occupation": "engineer", "balance": 185000, "recommendation": "VIP Member; Silver CD; Tech Professional Investment Plan; Retirement Growth Plan (RGP); Overdraft Protection Plan" }**
 
-**5. Export Customer Recommendation to CSV (Bonous Feature)**
+**5. Export Customer Recommendation to CSV (Bonus Feature)**
 
-This document describes the bonus functionality for exporting customer product recommendations to a CSV file. The** \*\***Export to CSV\*\* feature provides a mechanism to generate a comprehensive spreadsheet containing customer details and their corresponding product recommendations. This is useful for auditing, analysis, or sharing the recommendations outside of the application.
+This document describes the bonus functionality for exporting customer product recommendations to a CSV file.The Export to CSV feature provides a mechanism to generate a comprehensive spreadsheet containing customer details and their corresponding product recommendations. This is useful for auditing, analysis, or sharing the recommendations outside of the application.
 
 [![alt text](https://github.com/negash/Bank_recommendation_AI_Model/raw/main/assets/customer_recommend_csv.png)](https://github.com/negash/Bank_recommendation_AI_Model/blob/main/assets/customer_recommend_csv.png)
 
@@ -207,13 +249,6 @@ The **Analytics Module** (analytics.py) processes customer demographic and finan
 **Analytics output :**
 
 <img src="assets/customer_analytics_dashboard.png" style="width:110%; height:auto;" alt="Project Architecture" />
-
-**7. Technologies Used**
-
-- Python
-- OpenAI function calling API (GPT-5.1 compatible)
-- JSON data structures
-- Rule-based logic engine
 
 **Future Improvements**
 - Deep Learning models
