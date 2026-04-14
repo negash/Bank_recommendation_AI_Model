@@ -16,7 +16,7 @@
 </p>
 
 ## 📚 Quick Links
-- [Overview](#project-overview)
+- [Project Overview](#project-overview)
 - [Features](#features)
 - [Project Structure](#project-structure)
 - [Installation](#installation)
