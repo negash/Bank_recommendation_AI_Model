@@ -12,9 +12,7 @@
   <img src="https://img.shields.io/badge/Python-3.9+-blue" />
   <img src="https://img.shields.io/badge/ML-Scikit--Learn-orange" />
   <img src="https://img.shields.io/badge/Status-Active-success" />
-  <a href="./LICENSE">
   <img src="https://img.shields.io/badge/License-MIT-green" />
-  </a>
 </p>
 
 ## 📚 Quick Links
