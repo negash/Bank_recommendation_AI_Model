@@ -15,15 +15,17 @@
   <img src="https://img.shields.io/badge/License-MIT-green" />
 </p>
 
-## 📚 Table of Contents
-- Overview
-- Features
-- Installation
-- Usage
-- Results
-- Future Work
+## 📚 Quick Links
+- [Overview](#project-overview)
+- [Features](#features)
+- [Project Structure](#project-structure)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Analytics](#analytics)
+- [Future Work](#future-work)
+- [License](#license)
   
-**Project Overview**
+## Project Overview
 
 This repository demonstrates a complete end-to-end recommendation system where a Large Language Model (LLM) intelligently interacts with backend logic to recommend appropriate bank products tailored to individual customer attributes such as age, balance, occupation, and account type.
 
@@ -42,7 +44,7 @@ This project solves that using machine learning.
 - Data preprocessing pipeline
 - ML model training
   
-## 📁 Project Structure
+## 📁Project Structure
 
 Bank_recommendation_AI_Model/</br>
 ├── 📂 data/                </br>
@@ -59,7 +61,7 @@ Bank_recommendation_AI_Model/</br>
 - OpenAI function calling to integrate LLM reasoning with structured backend functions
 - A rule-based recommendation model representing real-world product eligibility
 
-**🚀 Installation**
+## 🚀Installation
 
 # Install dependencies
 pip install -r requirements.txt
@@ -76,7 +78,8 @@ python -m venv .venv
 
 source .venv/bin/activate
 
-**▶️ Usage**
+## Usage
+
 # Run notebook
 jupyter notebook
 
@@ -229,6 +232,7 @@ This document describes the bonus functionality for exporting customer product r
 
 [![alt text](https://github.com/negash/Bank_recommendation_AI_Model/raw/main/assets/customer_recommend_csv.png)](https://github.com/negash/Bank_recommendation_AI_Model/blob/main/assets/customer_recommend_csv.png)
 
+
 **6. Customer Analytics Dashboard**
 
 The **Analytics Module** (analytics.py) processes customer demographic and financial data to generate a consolidated visual report. It bridges the gap between raw customer profiles and actionable business intelligence.
@@ -240,21 +244,25 @@ The **Analytics Module** (analytics.py) processes customer demographic and finan
 - **Product Demand** : A ranked bar chart showing the most frequently recommended financial products based on the system's logic.
 - **Single-File Output** : Generates a high-resolution customer_analytics_dashboard.png for easy sharing and reporting.
 
+## Analytics
+
 **Analytics output :**
 
 <img src="assets/customer_analytics_dashboard.png" style="width:110%; height:auto;" alt="Project Architecture" />
 
-**Future Improvements**
+## Future Work
+
 - Deep Learning models
 - Real-time recommendation API
 - Streamlit / Web dashboard
 
-📜 License
+## 📜License
 
-This project is licensed under the MIT License.
+This project is licensed under the MIT License. 
+Copyright (c) 2026 Negash (https://github.com/negash)
 
 👤 Author
 
-Negash
+Developed by Negash
 
 GitHub: https://github.com/negash
