@@ -40,9 +40,26 @@ This project solves that using machine learning.
 
 ## Features
 
-- Personalized recommendations
-- Data preprocessing pipeline
-- ML model training
+-   **Customer Modeling**
+   Structured customer profiles with normalized attributes for accurate analysis  
+
+-   **Rule-Based Recommendation Engine**
+   Suggests banking products based on age, balance, occupation, and account type  
+
+-   **LLM Tool Integration**
+   Seamless function-calling pipeline connecting AI models with recommendation logic  
+
+-   **Automated Decision Pipeline**
+   End-to-end flow: input → model → tool → intelligent response  
+
+-  **JSON-Based Data Handling**
+   Flexible and scalable customer dataset management  
+
+-  **CSV Export**
+   Generate customer recommendation reports for analysis and business use  
+
+-  **Modern AI Compatibility**
+   Fully compatible with advanced LLM tool invocation frameworks
   
 ## 📁Project Structure
 
@@ -85,31 +102,6 @@ jupyter notebook
 
 # OR run script
 python src/main.py
-
-**Key Features**
-
-##   Key Features
-
--   **Customer Modeling**
-   Structured customer profiles with normalized attributes for accurate analysis  
-
--   **Rule-Based Recommendation Engine**
-   Suggests banking products based on age, balance, occupation, and account type  
-
--   **LLM Tool Integration**
-   Seamless function-calling pipeline connecting AI models with recommendation logic  
-
--   **Automated Decision Pipeline**
-   End-to-end flow: input → model → tool → intelligent response  
-
--  **JSON-Based Data Handling**
-   Flexible and scalable customer dataset management  
-
--  **CSV Export**
-   Generate customer recommendation reports for analysis and business use  
-
--  **Modern AI Compatibility**
-   Fully compatible with advanced LLM tool invocation frameworks
     
 **Project Architecture**
 
